@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hydroponic Plant Data'),
+        title: const Text('Hydroponic'),
       ),
       body: _tabItems[_selectedIndex],
       bottomNavigationBar: FlashyTabBar(
