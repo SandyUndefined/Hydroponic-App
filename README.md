@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # hydrophonic
 
 A new Flutter project.
@@ -14,3 +15,6 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# Hydroponic-App
+>>>>>>> b1501258a8bf1f5316b826f95c19f8fa52c8ea9c
