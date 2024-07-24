@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:hydrophonic/components/widgets/status_card.dart';
+import 'package:hydrophonic/services/thingspeak_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -57,33 +58,85 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class HomeTab extends StatelessWidget {
+class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final currentStatusData = [
-      {'value': '22°C', 'label': 'Water Temperature\n2:15 PM Today'},
-      {'value': '750', 'label': 'TDS\n2:20 PM Today'},
-      {'value': '1.5', 'label': 'EC\n2:25 PM Today'},
-      {'value': '25°C', 'label': 'Temperature\n2:30 PM Today'},
-      {'value': '400', 'label': 'CO2\n2:35 PM Today'},
-      {'value': '60%', 'label': 'Humidity\n2:40 PM Today'},
-      {'value': '1000 lux', 'label': 'Light Intensity\n2:45 PM Today'},
-      {'value': '75%', 'label': 'Water Level\n2:50 PM Today'},
-    ];
+  _HomeTabState createState() => _HomeTabState();
+}
 
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          StatusCard(
-            title: 'Current Status',
-            statusData: currentStatusData,
-          ),
-          // Add more StatusCard widgets or other widgets here
-        ],
-      ),
+class _HomeTabState extends State<HomeTab> {
+  final ThingSpeakService _thingSpeakService = ThingSpeakService();
+  late Future<Map<String, dynamic>> _data;
+
+  @override
+  void initState() {
+    super.initState();
+    _data = _thingSpeakService.fetchData();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<Map<String, dynamic>>(
+      future: _data,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          return const Center(child: Text('No data available'));
+        } else {
+          final data = snapshot.data!;
+          final currentStatusData = [
+            {
+              'value': '${data['Water Temperature']['value']}°C',
+              'label': 'Water Temperature\n${data['Water Temperature']['time']}'
+            },
+            {
+              'value': '${data['TDS']['value']}',
+              'label': 'TDS\n${data['TDS']['time']}'
+            },
+            {
+              'value': '${data['EC']['value']}',
+              'label': 'EC\n${data['EC']['time']}'
+            },
+            {
+              'value': '${data['Temperature']['value']}°C',
+              'label': 'Temperature\n${data['Temperature']['time']}'
+            },
+            {
+              'value': '${data['CO2 Concentration']['value']}',
+              'label': 'CO2\n${data['CO2 Concentration']['time']}'
+            },
+            {
+              'value': '${data['Humidity']['value']}%',
+              'label': 'Humidity\n${data['Humidity']['time']}'
+            },
+            {
+              'value': '${data['Light Intensity']['value']} lux',
+              'label': 'Light Intensity\n${data['Light Intensity']['time']}'
+            },
+            {
+              'value': '${data['Water Level']['value']}%',
+              'label': 'Water Level\n${data['Water Level']['time']}'
+            },
+          ];
+
+          return SingleChildScrollView(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                StatusCard(
+                  title: 'Current Status',
+                  statusData: currentStatusData,
+                ),
+                // Add more StatusCard widgets or other widgets here
+              ],
+            ),
+          );
+        }
+      },
     );
   }
 }
