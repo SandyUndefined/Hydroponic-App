@@ -13,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _tabItems = [
-    HomeTab(),
+    const HomeTab(),
     const Center(child: Text("Plants")),
     const Center(child: Text("Statistics")),
     const Center(child: Text("Alerts"))
