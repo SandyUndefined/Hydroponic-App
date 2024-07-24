@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Miscellaneous
 *.class
 *.log
@@ -16,6 +16,7 @@ migrate_working_dir/
 *.ipr
 *.iws
 .idea/
+.vscode/
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
@@ -42,7 +43,6 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-=======
 # See https://www.dartlang.org/guides/libraries/private-files
 
 # Files and directories created by pub
@@ -70,4 +70,3 @@ doc/api/
 
 .flutter-plugins
 .flutter-plugins-dependencies
->>>>>>> b1501258a8bf1f5316b826f95c19f8fa52c8ea9c
