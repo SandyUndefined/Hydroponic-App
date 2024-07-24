@@ -39,27 +39,35 @@ class StatusCard extends StatelessWidget {
               itemCount: statusData.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 3,
+                crossAxisSpacing: 10.0,
+                mainAxisSpacing: 10.0,
+                childAspectRatio:
+                    2.0, // Adjusted the aspect ratio to increase height
               ),
               itemBuilder: (context, index) {
                 final data = statusData[index];
                 return Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      data['value']!,
-                      style: const TextStyle(
-                        color: ColorPalette.primaryColor,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                    Flexible(
+                      child: Text(
+                        data['value']!,
+                        style: const TextStyle(
+                          color: ColorPalette.primaryColor,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 5),
-                    Text(
-                      data['label']!,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: ColorPalette.secondaryColor,
-                        fontSize: 14,
+                    Flexible(
+                      child: Text(
+                        data['label']!,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: ColorPalette.secondaryColor,
+                          fontSize: 14,
+                        ),
                       ),
                     ),
                   ],
