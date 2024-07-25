@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:hydrophonic/components/widgets/status_card.dart';
 import 'package:hydrophonic/services/thingspeak_service.dart';
+import 'dart:async'; // Import the dart:async package for Timer
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -68,11 +69,27 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   final ThingSpeakService _thingSpeakService = ThingSpeakService();
   late Future<Map<String, dynamic>> _data;
+  late Timer _timer; // Timer to refresh data
 
   @override
   void initState() {
     super.initState();
-    _data = _thingSpeakService.fetchData();
+    _fetchData();
+    _timer = Timer.periodic(const Duration(seconds: 60), (timer) {
+      _fetchData();
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel(); // Cancel the timer when the widget is disposed
+    super.dispose();
+  }
+
+  void _fetchData() {
+    setState(() {
+      _data = _thingSpeakService.fetchData();
+    });
   }
 
   @override
