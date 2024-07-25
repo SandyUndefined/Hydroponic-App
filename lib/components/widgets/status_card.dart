@@ -48,6 +48,7 @@ class StatusCard extends StatelessWidget {
               ),
               itemBuilder: (context, index) {
                 final data = statusData[index];
+                final labelParts = data['label']!.split('\n');
                 return Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -64,11 +65,24 @@ class StatusCard extends StatelessWidget {
                     const SizedBox(height: 5),
                     Flexible(
                       child: Text(
-                        data['label']!,
+                        labelParts[0], // The label part
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           color: ColorPalette.secondaryColor,
                           fontSize: 14,
+                          fontWeight: FontWeight.bold, // Bold the label
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: Text(
+                        labelParts[1], // The time part
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: ColorPalette.secondaryColor,
+                          fontSize: 14,
+                          fontWeight:
+                              FontWeight.normal, // Normal weight for time
                         ),
                       ),
                     ),
