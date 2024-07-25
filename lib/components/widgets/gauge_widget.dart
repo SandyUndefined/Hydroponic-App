@@ -1,0 +1,1 @@
+syncfusion_flutter_gauges: ^19.3.55

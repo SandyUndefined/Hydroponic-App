@@ -33,6 +33,7 @@ dependencies:
   http: ^1.2.2
   flashy_tab_bar2: ^0.0.10
   intl: ^0.19.0
+  syncfusion_flutter_gauges: ^19.3.55
 
 
   # The following adds the Cupertino Icons font to your application.
