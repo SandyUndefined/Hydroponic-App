@@ -29,11 +29,14 @@ class ThingSpeakService {
   }
 
   Map<String, String> _processField(String value, String timestamp) {
+    final doubleValue = double.tryParse(value) ?? 0.0;
+    final roundedValue = doubleValue.toStringAsFixed(1);
+
     final dateTime = DateTime.parse(timestamp)
         .toUtc()
         .add(const Duration(hours: 5, minutes: 30));
     final formattedTime =
         "${dateTime.hour}:${dateTime.minute.toString().padLeft(2, '0')} AM Today";
-    return {'value': value, 'time': formattedTime};
+    return {'value': roundedValue, 'time': formattedTime};
   }
 }
