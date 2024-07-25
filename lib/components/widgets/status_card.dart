@@ -44,7 +44,7 @@ class StatusCard extends StatelessWidget {
                 crossAxisSpacing: 10.0,
                 mainAxisSpacing: 10.0,
                 childAspectRatio:
-                    2.0, // Adjusted the aspect ratio to increase height
+                    1.5, // Adjusted the aspect ratio to increase height
               ),
               itemBuilder: (context, index) {
                 final data = statusData[index];
