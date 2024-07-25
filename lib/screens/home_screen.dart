@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:hydrophonic/components/widgets/status_card.dart';
+import 'package:hydrophonic/components/widgets/statistics_card.dart';
 import 'package:hydrophonic/services/thingspeak_service.dart';
 import 'dart:async';
 
@@ -17,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _tabItems = [
     const HomeTab(),
     const Center(child: Text("Plants")),
-    const Center(child: Text("Statistics")),
+    const StatisticsTab(),
     const Center(child: Text("Alerts"))
   ];
 
@@ -86,7 +87,7 @@ class _HomeTabState extends State<HomeTab> {
 
   void _fetchData() {
     setState(() {
-      _data = _thingSpeakService.fetchData();
+      _data = _thingSpeakService.fetchCurrentData();
     });
   }
 
@@ -122,7 +123,7 @@ class _HomeTabState extends State<HomeTab> {
             },
             {'value': '${data['Humidity']['value']}%', 'label': 'Humidity'},
             {
-              'value': '${data['Light Intensity']['value']} lux',
+              'value': '${data['Light Intensity']['value']} Lux',
               'label': 'Light Intensity'
             },
             {
@@ -146,6 +147,29 @@ class _HomeTabState extends State<HomeTab> {
           );
         }
       },
+    );
+  }
+}
+
+class StatisticsTab extends StatelessWidget {
+  const StatisticsTab({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const SingleChildScrollView(
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          StatisticsCard(title: 'Water Temperature', field: 'field5'),
+          StatisticsCard(title: 'TDS', field: 'field6'),
+          StatisticsCard(title: 'EC', field: 'field7'),
+          StatisticsCard(title: 'Temperature', field: 'field1'),
+          StatisticsCard(title: 'CO2', field: 'field4'),
+          StatisticsCard(title: 'Humidity', field: 'field2'),
+          StatisticsCard(title: 'Light Intensity', field: 'field3'),
+          StatisticsCard(title: 'Water Level', field: 'field8'),
+        ],
+      ),
     );
   }
 }
