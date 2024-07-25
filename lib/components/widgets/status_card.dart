@@ -4,11 +4,13 @@ import 'package:hydrophonic/utils/color_palette.dart';
 class StatusCard extends StatelessWidget {
   final String title;
   final List<Map<String, String>> statusData;
+  final String updateTime;
 
   const StatusCard({
     Key? key,
     required this.title,
     required this.statusData,
+    required this.updateTime,
   }) : super(key: key);
 
   @override
@@ -34,6 +36,17 @@ class StatusCard extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 5),
+            Center(
+              child: Text(
+                updateTime,
+                style: const TextStyle(
+                  color: ColorPalette.secondaryColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
             const SizedBox(height: 10),
             GridView.builder(
               physics: const NeverScrollableScrollPhysics(),
@@ -48,7 +61,8 @@ class StatusCard extends StatelessWidget {
               ),
               itemBuilder: (context, index) {
                 final data = statusData[index];
-                final labelParts = data['label']!.split('\n');
+                final labelParts =
+                    data['label']!.split('\n')[0]; // Only get the label part
                 return Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -65,24 +79,12 @@ class StatusCard extends StatelessWidget {
                     const SizedBox(height: 5),
                     Flexible(
                       child: Text(
-                        labelParts[0], // The label part
+                        labelParts, // The label part
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           color: ColorPalette.secondaryColor,
                           fontSize: 14,
                           fontWeight: FontWeight.bold, // Bold the label
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      child: Text(
-                        labelParts[1], // The time part
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: ColorPalette.secondaryColor,
-                          fontSize: 14,
-                          fontWeight:
-                              FontWeight.normal, // Normal weight for time
                         ),
                       ),
                     ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:hydrophonic/components/widgets/status_card.dart';
 import 'package:hydrophonic/services/thingspeak_service.dart';
-import 'dart:async'; // Import the dart:async package for Timer
+import 'dart:async';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -46,13 +46,11 @@ class _HomeScreenState extends State<HomeScreen> {
             title: const Text('Plants'),
           ),
           FlashyTabBarItem(
-            icon: const Icon(Icons.bar_chart),
-            title: const Text('Statistics'),
-          ),
+              icon: const Icon(Icons.bar_chart),
+              title: const Text('Statistics')),
           FlashyTabBarItem(
-            icon: const Icon(Icons.notifications),
-            title: const Text('Alerts'),
-          ),
+              icon: const Icon(Icons.notifications),
+              title: const Text('Alerts')),
         ],
       ),
     );
@@ -69,7 +67,7 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   final ThingSpeakService _thingSpeakService = ThingSpeakService();
   late Future<Map<String, dynamic>> _data;
-  late Timer _timer; // Timer to refresh data
+  late Timer _timer;
 
   @override
   void initState() {
@@ -105,38 +103,31 @@ class _HomeTabState extends State<HomeTab> {
           return const Center(child: Text('No data available'));
         } else {
           final data = snapshot.data!;
+          final updateTime =
+              data['Water Temperature']['time']; // Extract common update time
           final currentStatusData = [
             {
               'value': '${data['Water Temperature']['value']}°C',
-              'label': 'Water Temperature\n${data['Water Temperature']['time']}'
+              'label': 'Water Temperature'
             },
-            {
-              'value': '${data['TDS']['value']}',
-              'label': 'TDS\n${data['TDS']['time']}'
-            },
-            {
-              'value': '${data['EC']['value']}',
-              'label': 'EC\n${data['EC']['time']}'
-            },
+            {'value': '${data['TDS']['value']} PPM', 'label': 'TDS'},
+            {'value': '${data['EC']['value']} uS/cm', 'label': 'EC'},
             {
               'value': '${data['Temperature']['value']}°C',
-              'label': 'Temperature\n${data['Temperature']['time']}'
+              'label': 'Temperature'
             },
             {
-              'value': '${data['CO2 Concentration']['value']}',
-              'label': 'CO2\n${data['CO2 Concentration']['time']}'
+              'value': '${data['CO2 Concentration']['value']} PPM',
+              'label': 'CO2'
             },
-            {
-              'value': '${data['Humidity']['value']}%',
-              'label': 'Humidity\n${data['Humidity']['time']}'
-            },
+            {'value': '${data['Humidity']['value']}%', 'label': 'Humidity'},
             {
               'value': '${data['Light Intensity']['value']} lux',
-              'label': 'Light Intensity\n${data['Light Intensity']['time']}'
+              'label': 'Light Intensity'
             },
             {
               'value': '${data['Water Level']['value']}%',
-              'label': 'Water Level\n${data['Water Level']['time']}'
+              'label': 'Water Level'
             },
           ];
 
@@ -147,6 +138,7 @@ class _HomeTabState extends State<HomeTab> {
                 StatusCard(
                   title: 'Current Status',
                   statusData: currentStatusData,
+                  updateTime: updateTime,
                 ),
                 // Add more StatusCard widgets or other widgets here
               ],
