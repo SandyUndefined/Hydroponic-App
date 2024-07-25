@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class ThingSpeakService {
   final String baseUrl =
@@ -35,8 +36,7 @@ class ThingSpeakService {
     final dateTime = DateTime.parse(timestamp)
         .toUtc()
         .add(const Duration(hours: 5, minutes: 30));
-    final formattedTime =
-        "${dateTime.hour}:${dateTime.minute.toString().padLeft(2, '0')} AM Today";
-    return {'value': roundedValue, 'time': formattedTime};
+    final formattedTime = DateFormat('h:mm a').format(dateTime);
+    return {'value': roundedValue, 'time': '$formattedTime Today'};
   }
 }
