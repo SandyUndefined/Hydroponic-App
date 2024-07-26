@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hydrophonic/services/thingspeak_service.dart';
 import 'package:hydrophonic/components/widgets/statistics_table.dart';
+import 'package:hydrophonic/components/widgets/gauge_widget.dart';
 import 'package:hydrophonic/utils/color_palette.dart';
 
 class StatisticsCard extends StatefulWidget {
@@ -21,11 +22,13 @@ class _StatisticsCardState extends State<StatisticsCard> {
   final ThingSpeakService _thingSpeakService = ThingSpeakService();
   bool _isExpanded = false;
   late Future<List<Map<String, String>>> _historicalData;
+  late Future<Map<String, String>> _currentData;
 
   @override
   void initState() {
     super.initState();
     _historicalData = _thingSpeakService.fetchHistoricalData(widget.field);
+    _currentData = _thingSpeakService.fetchCurrentDataField(widget.field);
   }
 
   @override
@@ -46,6 +49,22 @@ class _StatisticsCardState extends State<StatisticsCard> {
           ),
         ),
         children: [
+          FutureBuilder<Map<String, String>>(
+            future: _currentData,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError) {
+                return Center(child: Text('Error: ${snapshot.error}'));
+              } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                return const Center(child: Text('No data available'));
+              } else {
+                final currentData = snapshot.data!;
+                final value = double.parse(currentData['value']!);
+                return GaugeWidget(value: value, title: widget.title);
+              }
+            },
+          ),
           FutureBuilder<List<Map<String, String>>>(
             future: _historicalData,
             builder: (context, snapshot) {

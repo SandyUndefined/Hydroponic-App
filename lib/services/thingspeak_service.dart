@@ -29,6 +29,23 @@ class ThingSpeakService {
     }
   }
 
+  Future<Map<String, String>> fetchCurrentDataField(String field) async {
+    final response = await http.get(Uri.parse('$baseUrl&results=1'));
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      final feeds = data['feeds'][0];
+      final value = double.tryParse(feeds[field])?.toStringAsFixed(1) ?? '0.0';
+      final dateTime = DateTime.parse(feeds['created_at'])
+          .toUtc()
+          .add(const Duration(hours: 5, minutes: 30));
+      final formattedTime = DateFormat('h:mm a').format(dateTime);
+      return {'value': value, 'time': formattedTime};
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
+
   Future<List<Map<String, String>>> fetchHistoricalData(String field) async {
     final response =
         await http.get(Uri.parse('$baseUrl&average=5minutes&results=20'));
