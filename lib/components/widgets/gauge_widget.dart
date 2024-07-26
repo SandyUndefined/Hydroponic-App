@@ -28,7 +28,12 @@ class GaugeWidget extends StatelessWidget {
               GaugeRange(startValue: 30, endValue: 40, color: Colors.red),
             ],
             pointers: <GaugePointer>[
-              NeedlePointer(value: value),
+              NeedlePointer(
+                value: value,
+                needleLength: 0.5, // Adjust the length of the needle
+                needleStartWidth: 2, // Adjust the width of the needle
+                needleEndWidth: 4, // Adjust the width of the needle
+              ),
             ],
             annotations: <GaugeAnnotation>[
               GaugeAnnotation(
@@ -36,7 +41,7 @@ class GaugeWidget extends StatelessWidget {
                   child: Text(
                     value.toStringAsFixed(1),
                     style: const TextStyle(
-                      fontSize: 25,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
