@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "215565652261",
+    "project_id": "hydroponic-908ac",
+    "storage_bucket": "hydroponic-908ac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:215565652261:android:a673795b32dc949a268acc",
+        "android_client_info": {
+          "package_name": "com.example.hydrophonic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "215565652261-v0fglnjs9d3pch67nfb8pkg8m3f6h7kn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hydrophonic",
+            "certificate_hash": "f926859823fdede96b7002790af54b5a38e60266"
+          }
+        },
+        {
+          "client_id": "215565652261-m2elai3hl1250qibqo8a89c2cpgp144s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhUrCAyfXOa_5WKeS0w-sd58d5FJftjoQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "215565652261-m2elai3hl1250qibqo8a89c2cpgp144s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

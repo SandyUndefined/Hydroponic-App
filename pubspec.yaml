@@ -35,6 +35,10 @@ dependencies:
   intl: ^0.17.0
   syncfusion_flutter_gauges: ^20.1.55
   animated_introduction: ^1.0.3
+  firebase_auth: ^5.1.4
+  firebase_core: ^3.3.0
+  google_sign_in: ^6.2.1
+
 
 
   # The following adds the Cupertino Icons font to your application.
