@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hydrophonic/screens/home_screen.dart';
+import 'package:hydrophonic/screens/intro_screen.dart';
 import 'package:hydrophonic/utils/color_palette.dart';
 
 void main() {
@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
           unselectedItemColor: ColorPalette.backgroundColor,
         ),
       ),
-      home: const HomeScreen(),
+      home: const IntroScreen(),
     );
   }
 }
