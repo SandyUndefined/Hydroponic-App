@@ -2,29 +2,37 @@ import 'package:animated_introduction/animated_introduction.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hydrophonic/components/widgets/showGreetingDialog.dart';
 import 'home_screen.dart';
 
 class IntroScreen extends StatelessWidget {
   
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<User?> _handleSignIn() async {
+Future<User?> _handleSignIn(BuildContext context) async {
     try {
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser!.authentication;
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-      final UserCredential userCredential =
-          await _auth.signInWithCredential(credential);
-      return userCredential.user;
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser != null) {
+        final GoogleSignInAuthentication googleAuth =
+            await googleUser.authentication;
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+        final UserCredential userCredential =
+            await _auth.signInWithCredential(credential);
+
+        final User user = userCredential.user!;
+
+        // Show the greeting dialog after login
+        showGreetingDialog(context, user);
+
+        return user;
+      }
     } catch (error) {
       print(error);
-      return null;
     }
+    return null;
   }
 
   @override
@@ -49,8 +57,10 @@ class IntroScreen extends StatelessWidget {
           ),
         ],
         onDone: () async {
-          User? user = await _handleSignIn();
+          User? user = await _handleSignIn(context);
           if (user != null) {
+            // Delay navigation to allow time for the dialog to be shown
+            // await Future.delayed(const Duration(seconds: 2));
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (_) => const HomeScreen()),
             );
