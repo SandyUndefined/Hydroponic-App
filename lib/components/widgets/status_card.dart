@@ -20,8 +20,16 @@ class StatusCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
-      color: Colors.white,
-      child: Padding(
+      color: Colors.transparent,
+      elevation: 5,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          image: const DecorationImage(
+            image: AssetImage('assets/images/statusCardBg.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
         padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -30,7 +38,7 @@ class StatusCard extends StatelessWidget {
               child: Text(
                 title,
                 style: const TextStyle(
-                  color: ColorPalette.secondaryColor,
+                  color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -41,7 +49,7 @@ class StatusCard extends StatelessWidget {
               child: Text(
                 updateTime,
                 style: const TextStyle(
-                  color: ColorPalette.secondaryColor,
+                  color: Colors.white,
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
                 ),
@@ -70,7 +78,7 @@ class StatusCard extends StatelessWidget {
                       child: Text(
                         data['value']!,
                         style: const TextStyle(
-                          color: ColorPalette.primaryColor,
+                          color: Colors.white,
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
@@ -82,7 +90,7 @@ class StatusCard extends StatelessWidget {
                         labelParts, // The label part
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                          color: ColorPalette.secondaryColor,
+                          color: Colors.white,
                           fontSize: 14,
                           fontWeight: FontWeight.bold, // Bold the label
                         ),

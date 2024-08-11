@@ -141,7 +141,7 @@ class _HomeTabState extends State<HomeTab> {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(
-                      top: 18.0, left: 18.0, right: 18.0, bottom: 46.0),
+                      top: 18.0, left: 18.0, right: 18.0, bottom: 6.0),
                   child: PageView(
                     controller: _pageController,
                     children: [
