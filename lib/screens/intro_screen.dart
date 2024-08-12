@@ -43,17 +43,17 @@ Future<User?> _handleSignIn(BuildContext context) async {
           SingleIntroScreen(
             title: 'Welcome',
             description: 'Welcome to Hydroponic App',
-            imageAsset: 'assets/onboard_one.png', // Replace with your asset
+            imageAsset: 'assets/images/one_slide.png', // Replace with your asset
           ),
           SingleIntroScreen(
             title: 'Monitor Your Plants',
             description: 'Keep track of all essential parameters',
-            imageAsset: 'assets/onboard_one.png', // Replace with your asset
+            imageAsset: 'assets/images/two_slide.png', // Replace with your asset
           ),
           SingleIntroScreen(
             title: 'Get Insights',
             description: 'Analyze the data and optimize your system',
-            imageAsset: 'assets/onboard_one.png', // Replace with your asset
+            imageAsset: 'assets/images/third_slide.png', // Replace with your asset
           ),
         ],
         onDone: () async {
