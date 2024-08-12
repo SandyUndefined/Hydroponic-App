@@ -141,35 +141,65 @@ class _HomeTabState extends State<HomeTab> {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(
-                      top: 18.0, left: 18.0, right: 18.0, bottom: 6.0),
+                      top: 18.0, left: 18.0, right: 18.0, bottom: 0.0),
                   child: PageView(
                     controller: _pageController,
                     children: [
                       StatusCard(
-                          title: 'Structure A',
-                          statusData: currentStatusData,
-                          updateTime: updateTime),
+                        title: 'Structure A',
+                        statusData: currentStatusData,
+                        updateTime: updateTime,
+                        videoUrl:
+                            'https://drive.google.com/file/d/1S0x0jvx1cQ8XFGvVY6aP6-N2XINmeahc/view?usp=sharing',
+                        photoFolder:
+                            'https://drive.google.com/file/d/1RaZzo5zsq4UQF9omNb2p9coEkO46nEOI/view?usp=sharing',
+                      ),
                       StatusCard(
-                          title: 'Structure B',
-                          statusData: currentStatusData,
-                          updateTime: updateTime),
+                        title: 'Structure B',
+                        statusData: currentStatusData,
+                        updateTime: updateTime,
+                        videoUrl:
+                            'https://drive.google.com/file/d/1S0x0jvx1cQ8XFGvVY6aP6-N2XINmeahc/view?usp=sharing',
+                        photoFolder:
+                            'https://drive.google.com/file/d/1RaZzo5zsq4UQF9omNb2p9coEkO46nEOI/view?usp=sharing',
+                      ),
                       // Add StatusCard widgets for C, D, E, F similarly
                       StatusCard(
-                          title: 'Structure C',
-                          statusData: currentStatusData,
-                          updateTime: updateTime), // Just reusing for example
+                        title: 'Structure C',
+                        statusData: currentStatusData,
+                        updateTime: updateTime,
+                        videoUrl:
+                            'https://drive.google.com/file/d/1S0x0jvx1cQ8XFGvVY6aP6-N2XINmeahc/view?usp=sharing',
+                        photoFolder:
+                            'https://drive.google.com/file/d/1RaZzo5zsq4UQF9omNb2p9coEkO46nEOI/view?usp=sharing',
+                      ), // Just reusing for example
                       StatusCard(
-                          title: 'Structure D',
-                          statusData: currentStatusData,
-                          updateTime: updateTime), // Just reusing for example
+                        title: 'Structure D',
+                        statusData: currentStatusData,
+                        updateTime: updateTime,
+                        videoUrl:
+                            'https://drive.google.com/file/d/1S0x0jvx1cQ8XFGvVY6aP6-N2XINmeahc/view?usp=sharing',
+                        photoFolder:
+                            'https://drive.google.com/file/d/1RaZzo5zsq4UQF9omNb2p9coEkO46nEOI/view?usp=sharing',
+                      ), // Just reusing for example
                       StatusCard(
-                          title: 'Structure E',
-                          statusData: currentStatusData,
-                          updateTime: updateTime), // Just reusing for example
+                        title: 'Structure E',
+                        statusData: currentStatusData,
+                        updateTime: updateTime,
+                        videoUrl:
+                            'https://drive.google.com/file/d/1S0x0jvx1cQ8XFGvVY6aP6-N2XINmeahc/view?usp=sharing',
+                        photoFolder:
+                            'https://drive.google.com/file/d/1RaZzo5zsq4UQF9omNb2p9coEkO46nEOI/view?usp=sharing',
+                      ), // Just reusing for example
                       StatusCard(
-                          title: 'Structure F',
-                          statusData: currentStatusData,
-                          updateTime: updateTime), // Just reusing for example
+                        title: 'Structure F',
+                        statusData: currentStatusData,
+                        updateTime: updateTime,
+                        videoUrl:
+                            'https://drive.google.com/file/d/1S0x0jvx1cQ8XFGvVY6aP6-N2XINmeahc/view?usp=sharing',
+                        photoFolder:
+                            'https://drive.google.com/file/d/1RaZzo5zsq4UQF9omNb2p9coEkO46nEOI/view?usp=sharing',
+                      ), // Just reusing for example
                     ],
                   ),
                 ),
