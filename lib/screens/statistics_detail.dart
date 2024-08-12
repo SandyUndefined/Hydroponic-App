@@ -3,26 +3,84 @@ import 'package:hydrophonic/components/widgets/statistics_card.dart';
 import 'package:hydrophonic/models/structure.dart';
 
 final List<Structure> structures = [
-  Structure(name: 'Structure A', fields: {
-    'Water Temperature': 'field5',
-    'TDS': 'field6',
-    'EC': 'field7',
-    'Temperature': 'field1',
-    'CO2': 'field4',
-    'Humidity': 'field2',
-    'Light Intensity': 'field3',
-    'Water Level': 'field8',
-  }),
-  Structure(name: 'Structure B', fields: {
-    'Water Temperature': 'field9',
-    'TDS': 'field10',
-    'EC': 'field11',
-    'Temperature': 'field12',
-    'CO2': 'field13',
-    'Humidity': 'field14',
-    'Light Intensity': 'field15',
-    'Water Level': 'field16',
-  }),
+  Structure(
+      name: 'Structure A',
+      imagePath: 'assets/images/statusCardBg.jpg',
+      fields: {
+        'Water Temperature': 'field5',
+        'TDS': 'field6',
+        'EC': 'field7',
+        'Temperature': 'field1',
+        'CO2': 'field4',
+        'Humidity': 'field2',
+        'Light Intensity': 'field3',
+        'Water Level': 'field8',
+      }),
+  Structure(
+      name: 'Structure B',
+      imagePath: 'assets/images/statusCardBg.jpg',
+      fields: {
+        'Water Temperature': 'field9',
+        'TDS': 'field10',
+        'EC': 'field11',
+        'Temperature': 'field12',
+        'CO2': 'field13',
+        'Humidity': 'field14',
+        'Light Intensity': 'field15',
+        'Water Level': 'field16',
+      }),
+  Structure(
+      name: 'Structure C',
+      imagePath: 'assets/images/statusCardBg.jpg',
+      fields: {
+        'Water Temperature': 'field9',
+        'TDS': 'field10',
+        'EC': 'field11',
+        'Temperature': 'field12',
+        'CO2': 'field13',
+        'Humidity': 'field14',
+        'Light Intensity': 'field15',
+        'Water Level': 'field16',
+      }),
+  Structure(
+      name: 'Structure D',
+      imagePath: 'assets/images/statusCardBg.jpg',
+      fields: {
+        'Water Temperature': 'field9',
+        'TDS': 'field10',
+        'EC': 'field11',
+        'Temperature': 'field12',
+        'CO2': 'field13',
+        'Humidity': 'field14',
+        'Light Intensity': 'field15',
+        'Water Level': 'field16',
+      }),
+  Structure(
+      name: 'Structure E',
+      imagePath: 'assets/images/statusCardBg.jpg',
+      fields: {
+        'Water Temperature': 'field9',
+        'TDS': 'field10',
+        'EC': 'field11',
+        'Temperature': 'field12',
+        'CO2': 'field13',
+        'Humidity': 'field14',
+        'Light Intensity': 'field15',
+        'Water Level': 'field16',
+      }),
+  Structure(
+      name: 'Structure F',
+      imagePath: 'assets/images/statusCardBg.jpg',
+      fields: {
+        'Water Temperature': 'field9',
+        'TDS': 'field10',
+        'EC': 'field11',
+        'Temperature': 'field12',
+        'CO2': 'field13',
+        'Humidity': 'field14',
+        'Light Intensity': 'field15',
+        'Water Level': 'field16',
+      }),
   // Add more structures as needed
 ];
 
