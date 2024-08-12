@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:hydrophonic/screens/home_tab.dart';
+import 'package:hydrophonic/screens/plants_tab.dart';
 import 'package:hydrophonic/screens/statistics_tab.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _tabItems = [
     const HomeTab(),
-    const Center(child: Text("Plants")),
+    const PlantsTab(),
     const StatisticsTab(),
     const Center(child: Text("Controls"))
   ];
