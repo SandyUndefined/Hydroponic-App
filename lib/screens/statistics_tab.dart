@@ -26,6 +26,7 @@ class StatisticsTab extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
             ),
+            elevation: 8,
             child: Stack(
               children: [
                 // Background Image
