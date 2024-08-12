@@ -6,20 +6,12 @@ final List<Plant> plants = [
   Plant(
     name: 'Basil',
     imagePath: 'assets/images/basil.jpg',
-    optimalConditions: 'Temperature: 20-25°C, Humidity: 50-60%',
-    additionalData: {
-      'Light Intensity': '1500-2000 lux',
-      'pH Level': '5.5-6.5',
-    },
+    optimalConditions: 'Temperature: 20-25°C, Humidity: 50-60%'
   ),
   Plant(
     name: 'Lettuce',
     imagePath: 'assets/images/lettuce.jpg',
-    optimalConditions: 'Temperature: 16-18°C, Humidity: 60-70%',
-    additionalData: {
-      'Light Intensity': '1200-1800 lux',
-      'pH Level': '6.0-7.0',
-    },
+    optimalConditions: 'Temperature: 16-18°C, Humidity: 60-70%'
   ),
   // Add more plants as needed
 ];
