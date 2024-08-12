@@ -95,6 +95,14 @@ class StatisticsDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(structure.name),
+        iconTheme: const IconThemeData(
+          color: Colors.white, // Change back button color to white
+        ),
+        titleTextStyle: const TextStyle(
+          color: Colors.white, // Change title text color to white
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
