@@ -11,6 +11,14 @@ class PlantDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(plant.name),
+        iconTheme: const IconThemeData(
+          color: Colors.white, // Change back button color to white
+        ),
+        titleTextStyle: const TextStyle(
+          color: Colors.white, // Change title text color to white
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

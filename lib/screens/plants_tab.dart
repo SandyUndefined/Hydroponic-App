@@ -5,7 +5,7 @@ import 'package:hydrophonic/screens/plants_details.dart';
 final List<Plant> plants = [
   Plant(
     name: 'Basil',
-    imagePath: 'assets/images/basil.png',
+    imagePath: 'assets/images/basil.jpg',
     optimalConditions: 'Temperature: 20-25°C, Humidity: 50-60%',
     additionalData: {
       'Light Intensity': '1500-2000 lux',
@@ -14,7 +14,7 @@ final List<Plant> plants = [
   ),
   Plant(
     name: 'Lettuce',
-    imagePath: 'assets/images/lettuce.png',
+    imagePath: 'assets/images/lettuce.jpg',
     optimalConditions: 'Temperature: 16-18°C, Humidity: 60-70%',
     additionalData: {
       'Light Intensity': '1200-1800 lux',
@@ -37,8 +37,16 @@ class PlantsTab extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                builder: (context) => PlantDetailScreen(plant: plant),
+              PageRouteBuilder(
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    PlantDetailScreen(plant: plant),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  );
+                },
               ),
             );
           },
