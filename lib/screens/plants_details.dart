@@ -25,7 +25,8 @@ class PlantDetailScreen extends StatelessWidget {
         child: ListView(
           children: [
             Center(
-              child: Image.asset(plant.imagePath, width: 100, height: 100),
+              child: Image.asset(plant.imagePath,
+              fit: BoxFit.cover,),
             ),
             const SizedBox(height: 20),
             const Text(

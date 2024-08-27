@@ -31,6 +31,7 @@ class _StatusCardState extends State<StatusCard> {
     _videoController =
         CachedVideoPlayerPlusController.networkUrl(Uri.parse(widget.videoUrl))
           ..initialize().then((_) {
+            _videoController.play();
             setState(() {}); // Ensure the first frame is shown
           });
   }
@@ -100,8 +101,8 @@ class _StatusCardState extends State<StatusCard> {
                   child: PageView.builder(
                     itemCount: imagePaths.length,
                     itemBuilder: (context, index) {
-                      return Image.asset(
-                        imagePaths[index],
+                      return Image.network(
+                        widget.photoFolder,
                         fit: BoxFit.cover,
                       );
                     },
@@ -127,13 +128,13 @@ class _StatusCardState extends State<StatusCard> {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(20),
       ),
       color: Colors.transparent,
-      elevation: 5,
+      elevation: 0,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(20),
           image: const DecorationImage(
             image: AssetImage('assets/images/statusCardBg.jpg'),
             fit: BoxFit.cover,
@@ -153,7 +154,6 @@ class _StatusCardState extends State<StatusCard> {
                 ),
               ),
             ),
-            const SizedBox(height: 5),
             Center(
               child: Text(
                 widget.updateTime,
@@ -166,7 +166,6 @@ class _StatusCardState extends State<StatusCard> {
             ),
             const SizedBox(height: 10),
             GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: widget.statusData.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

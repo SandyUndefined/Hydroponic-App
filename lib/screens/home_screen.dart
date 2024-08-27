@@ -4,6 +4,8 @@ import 'package:hydrophonic/screens/home_tab.dart';
 import 'package:hydrophonic/screens/plants_tab.dart';
 import 'package:hydrophonic/screens/statistics_tab.dart';
 
+import 'controls_tab.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -18,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const HomeTab(),
     const PlantsTab(),
     const StatisticsTab(),
-    const Center(child: Text("Controls"))
+    const ControlsTab(),
   ];
 
   @override
@@ -26,6 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Hydroponic'),
+        backgroundColor: Colors.white,
+        titleTextStyle: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
       ),
       body: _tabItems[_selectedIndex],
       bottomNavigationBar: FlashyTabBar(

@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           tertiary: ColorPalette.accentColor,
           background: ColorPalette.backgroundColor,
         ),
-        scaffoldBackgroundColor: ColorPalette.backgroundColor,
+        scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
           color: ColorPalette.primaryColor,
           titleTextStyle: TextStyle(

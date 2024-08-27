@@ -94,18 +94,18 @@ class _HomeTabState extends State<HomeTab> {
                         statusData: currentStatusData,
                         updateTime: updateTime,
                         videoUrl:
-                            'https://drive.google.com/file/d/1S0x0jvx1cQ8XFGvVY6aP6-N2XINmeahc/view?usp=sharing',
+                            'https://drive.google.com/uc?export=download&id=1XqtA1-_ZzKGB9wyaOy8O69_HWmqRq8fr',
                         photoFolder:
-                            'https://drive.google.com/file/d/1RaZzo5zsq4UQF9omNb2p9coEkO46nEOI/view?usp=sharing',
+                            'https://drive.google.com/uc?export=view&id=1L6jyEkNgPI4dFneC9ERnxTpJkMhjsRMN',
                       ),
                       StatusCard(
                         title: 'Structure B',
                         statusData: currentStatusData,
                         updateTime: updateTime,
                         videoUrl:
-                            'https://drive.google.com/file/d/1S0x0jvx1cQ8XFGvVY6aP6-N2XINmeahc/view?usp=sharing',
+                            'https://drive.google.com/uc?export=download&id=1XqtA1-_ZzKGB9wyaOy8O69_HWmqRq8fr',
                         photoFolder:
-                            'https://drive.google.com/file/d/1RaZzo5zsq4UQF9omNb2p9coEkO46nEOI/view?usp=sharing',
+                            'https://drive.google.com/uc?export=view&id=1L6jyEkNgPI4dFneC9ERnxTpJkMhjsRMN',
                       ),
                       // Add StatusCard widgets for C, D, E, F similarly
                       StatusCard(
@@ -113,36 +113,36 @@ class _HomeTabState extends State<HomeTab> {
                         statusData: currentStatusData,
                         updateTime: updateTime,
                         videoUrl:
-                            'https://drive.google.com/file/d/1S0x0jvx1cQ8XFGvVY6aP6-N2XINmeahc/view?usp=sharing',
+                            'https://drive.google.com/uc?export=download&id=1XqtA1-_ZzKGB9wyaOy8O69_HWmqRq8fr',
                         photoFolder:
-                            'https://drive.google.com/file/d/1RaZzo5zsq4UQF9omNb2p9coEkO46nEOI/view?usp=sharing',
+                            'https://drive.google.com/uc?export=view&id=1L6jyEkNgPI4dFneC9ERnxTpJkMhjsRMN',
                       ), // Just reusing for example
                       StatusCard(
                         title: 'Structure D',
                         statusData: currentStatusData,
                         updateTime: updateTime,
                         videoUrl:
-                            'https://drive.google.com/file/d/1S0x0jvx1cQ8XFGvVY6aP6-N2XINmeahc/view?usp=sharing',
+                            'https://drive.google.com/uc?export=download&id=1XqtA1-_ZzKGB9wyaOy8O69_HWmqRq8fr',
                         photoFolder:
-                            'https://drive.google.com/file/d/1RaZzo5zsq4UQF9omNb2p9coEkO46nEOI/view?usp=sharing',
+                            'https://drive.google.com/uc?export=view&id=1L6jyEkNgPI4dFneC9ERnxTpJkMhjsRMN',
                       ), // Just reusing for example
                       StatusCard(
                         title: 'Structure E',
                         statusData: currentStatusData,
                         updateTime: updateTime,
                         videoUrl:
-                            'https://drive.google.com/file/d/1S0x0jvx1cQ8XFGvVY6aP6-N2XINmeahc/view?usp=sharing',
+                            'https://drive.google.com/uc?export=download&id=1XqtA1-_ZzKGB9wyaOy8O69_HWmqRq8fr',
                         photoFolder:
-                            'https://drive.google.com/file/d/1RaZzo5zsq4UQF9omNb2p9coEkO46nEOI/view?usp=sharing',
+                            'https://drive.google.com/uc?export=view&id=1L6jyEkNgPI4dFneC9ERnxTpJkMhjsRMN',
                       ), // Just reusing for example
                       StatusCard(
                         title: 'Structure F',
                         statusData: currentStatusData,
                         updateTime: updateTime,
                         videoUrl:
-                            'https://drive.google.com/file/d/1S0x0jvx1cQ8XFGvVY6aP6-N2XINmeahc/view?usp=sharing',
+                            'https://drive.google.com/uc?export=download&id=1XqtA1-_ZzKGB9wyaOy8O69_HWmqRq8fr',
                         photoFolder:
-                            'https://drive.google.com/file/d/1RaZzo5zsq4UQF9omNb2p9coEkO46nEOI/view?usp=sharing',
+                            'https://drive.google.com/uc?export=view&id=1L6jyEkNgPI4dFneC9ERnxTpJkMhjsRMN',
                       ), // Just reusing for example
                     ],
                   ),
