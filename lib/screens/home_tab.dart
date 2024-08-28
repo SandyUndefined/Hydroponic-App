@@ -94,9 +94,9 @@ class _HomeTabState extends State<HomeTab> {
                         statusData: currentStatusData,
                         updateTime: updateTime,
                         videoUrl:
-                            'https://drive.google.com/uc?export=download&id=1XqtA1-_ZzKGB9wyaOy8O69_HWmqRq8fr',
+                            'https://drive.google.com/uc?export=download&id=15Ec-fUrrRF6G08codi2bHQnTfyrHD1ba',
                         photoFolder:
-                            'https://drive.google.com/uc?export=view&id=1L6jyEkNgPI4dFneC9ERnxTpJkMhjsRMN',
+                            'https://drive.google.com/uc?export=view&id=18xiaXzH3P7e_4cQGZsmBUcUlmcKgpVRx',
                       ),
                       StatusCard(
                         title: 'Structure B',
