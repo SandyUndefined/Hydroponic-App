@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
 
 class ControlsTab extends StatefulWidget {
   const ControlsTab({super.key});
@@ -17,29 +19,94 @@ class _ControlsTabState extends State<ControlsTab> {
   void _increaseTemperature() {
     setState(() {
       _temperature++;
+      _sendTemperatureToServer(_temperature);
     });
   }
 
   void _decreaseTemperature() {
     setState(() {
       _temperature--;
+      _sendTemperatureToServer(_temperature);
     });
   }
+
+  void _sendTemperatureToServer(int temperature) async {
+    final String apiUrl = 'https://<link>?temp=$temperature';
+
+    try {
+      final response = await http.get(Uri.parse(apiUrl));
+      if (response.statusCode == 200) {
+        print('Temperature updated on server: $temperature');
+      } else {
+        print('Failed to update temperature. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error updating temperature: $e');
+    }
+  }
+
+
 
   void _increaseHumidity() {
     setState(() {
       _humidity++;
+      _sendHumidityToServer(_humidity);
     });
   }
 
   void _decreaseHumidity() {
     setState(() {
       _humidity--;
+      _sendHumidityToServer(_humidity);
     });
   }
 
 
+  void _sendHumidityToServer(int humidity) async {
+    // Construct the API URL with the updated humidity value
+    final String apiUrl = 'https://<link>?humidity=$humidity';
 
+    try {
+      // Send the GET request to the server
+      final response = await http.get(Uri.parse(apiUrl));
+
+      // Check if the request was successful
+      if (response.statusCode == 200) {
+        print('Humidity updated on server: $humidity');
+      } else {
+        print('Failed to update humidity. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      // Handle any errors that occur during the request
+      print('Error updating humidity: $e');
+    }
+  }
+
+
+  void _selectChemical(String chemical) {
+    setState(() {
+      _selectedChemical = chemical;
+      _sendChemicalToServer(_selectedChemical);
+    });
+  }
+
+  void _sendChemicalToServer(String chemical) async {
+    final String apiUrl = 'https://<link>?chemical=$chemical';
+
+    try {
+      final response = await http.get(Uri.parse(apiUrl));
+
+      // Check if the request was successful
+      if (response.statusCode == 200) {
+        print('Chemical updated on server: $chemical');
+      } else {
+        print('Failed to update chemical. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      // Handle any errors that occur during the request
+      print('Error updating chemical: $e');
+    }
+  }
 
   void _selectWaterAmount(int amount) {
     setState(() {
@@ -47,23 +114,64 @@ class _ControlsTabState extends State<ControlsTab> {
     });
   }
 
-  void _selectChemical(String chemical) {
-    setState(() {
-      _selectedChemical = chemical;
-    });
-  }
-
   void _addWater() {
-    // Handle the "Add" button press, e.g., send the selected amount to an IoT device
+    _sendWaterAmountToServer(_selectedWaterAmount);
     print('Adding $_selectedWaterAmount ml of water');
   }
 
-  double _intensity = 50; // Initial intensity in lumens
+  void _sendWaterAmountToServer(int amount) async {
+    // Construct the API URL with the selected water amount
+    final String apiUrl = 'https://<link>?water=$amount';
+
+    try {
+      // Send the GET request to the server
+      final response = await http.get(Uri.parse(apiUrl));
+
+      // Check if the request was successful
+      if (response.statusCode == 200) {
+        print('Water amount updated on server: $amount ml');
+      } else {
+        print('Failed to update water amount. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      // Handle any errors that occur during the request
+      print('Error updating water amount: $e');
+    }
+  }
+
+
+  void _addNeutraliser() {
+    _sendNeutralizerToServer();
+  }
+
+  void _sendNeutralizerToServer() async {
+    final String apiUrl = 'https://<link>?action=addNeutralizer';
+
+    try {
+      // Send the GET request to the server
+      final response = await http.get(Uri.parse(apiUrl));
+
+      // Check if the request was successful
+      if (response.statusCode == 200) {
+        print('Drop of neutralizer added on server');
+      } else {
+        print('Failed to add neutralizer. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      // Handle any errors that occur during the request
+      print('Error adding neutralizer: $e');
+    }
+  }
+
+
+
+  double _intensity = 50;
 
   void _increaseIntensity() {
     setState(() {
       if (_intensity < 100) {
         _intensity += 10; // Increase by 10 lumens
+        _sendLightingIntensityToServer(_intensity);
       }
     });
   }
@@ -72,9 +180,32 @@ class _ControlsTabState extends State<ControlsTab> {
     setState(() {
       if (_intensity > 0) {
         _intensity -= 10; // Decrease by 10 lumens
+        _sendLightingIntensityToServer(_intensity);
       }
     });
   }
+
+
+  void _sendLightingIntensityToServer(double intensity) async {
+    // Construct the API URL with the lighting intensity parameter
+    final String apiUrl = 'https://<link>?intensity=$intensity';
+
+    try {
+      // Send the GET request to the server
+      final response = await http.get(Uri.parse(apiUrl));
+
+      // Check if the request was successful
+      if (response.statusCode == 200) {
+        print('Lighting intensity updated on server: $intensity lumens');
+      } else {
+        print('Failed to update lighting intensity. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      // Handle any errors that occur during the request
+      print('Error updating lighting intensity: $e');
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -265,7 +396,7 @@ class _ControlsTabState extends State<ControlsTab> {
                   const SizedBox(height: 20),
 
                   ElevatedButton(
-                    onPressed: _addWater,
+                    onPressed: _addNeutraliser,
                     child: const Text('Add a drop of neutralizer'),
                   ),
                 ],

@@ -4,11 +4,17 @@ import 'package:syncfusion_flutter_gauges/gauges.dart';
 class GaugeWidget extends StatelessWidget {
   final double value;
   final String title;
+  final ranges;
+  final min;
+  final max;
 
   const GaugeWidget({
     Key? key,
     required this.value,
     required this.title,
+    this.ranges,
+    this.min,
+    this.max,
   }) : super(key: key);
 
   @override
@@ -19,14 +25,9 @@ class GaugeWidget extends StatelessWidget {
       child: SfRadialGauge(
         axes: <RadialAxis>[
           RadialAxis(
-            minimum: 0,
-            maximum: 40,
-            ranges: <GaugeRange>[
-              GaugeRange(startValue: 0, endValue: 15, color: Colors.red),
-              GaugeRange(startValue: 15, endValue: 25, color: Colors.green),
-              GaugeRange(startValue: 25, endValue: 30, color: Colors.yellow),
-              GaugeRange(startValue: 30, endValue: 40, color: Colors.red),
-            ],
+            minimum: min,
+            maximum: max,
+            ranges: ranges,
             pointers: <GaugePointer>[
               NeedlePointer(
                 value: value,

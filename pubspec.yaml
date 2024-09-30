@@ -41,6 +41,14 @@ dependencies:
   smooth_page_indicator: ^1.2.0+3
   cached_video_player_plus: ^3.0.3
 
+  image: ^4.2.0
+  flutter_image_compress: ^2.3.0
+  cached_network_image: ^3.4.1
+
+  onesignal_flutter: ^5.2.5
+
+
+
 
 
   # The following adds the Cupertino Icons font to your application.

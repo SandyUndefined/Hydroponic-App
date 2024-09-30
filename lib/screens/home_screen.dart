@@ -3,6 +3,7 @@ import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:hydrophonic/screens/home_tab.dart';
 import 'package:hydrophonic/screens/plants_tab.dart';
 import 'package:hydrophonic/screens/statistics_tab.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 import 'controls_tab.dart';
 
@@ -23,6 +24,17 @@ class _HomeScreenState extends State<HomeScreen> {
     const ControlsTab(),
   ];
 
+
+
+  String? notifID = "";
+  Future<void> getPlayerId() async {
+    var _ = await OneSignal.User.getOnesignalId();
+    setState(() {
+      notifID = _;
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +42,37 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Hydroponic'),
         backgroundColor: Colors.white,
         titleTextStyle: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings, color: Colors.black), // Change the icon as needed
+            onPressed: () {
+
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Your Notification ID'),
+                    content: SelectableText(
+                      'Put this id in ThingSpeak:\n'+ notifID!,
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    actions: [
+                      TextButton(
+                        child: Text('Close'),
+                        onPressed: () {
+                          Navigator.of(context).pop(); // Close the dialog
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+
+            },
+          ),
+        ],
       ),
+
       body: _tabItems[_selectedIndex],
       bottomNavigationBar: FlashyTabBar(
         animationCurve: Curves.linear,

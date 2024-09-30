@@ -1,6 +1,12 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:cached_video_player_plus/cached_video_player_plus.dart';
 import 'package:hydrophonic/utils/color_palette.dart';
+
+import 'package:http/http.dart' as http;
+
 
 class StatusCard extends StatefulWidget {
   final String title;
@@ -22,8 +28,14 @@ class StatusCard extends StatefulWidget {
   _StatusCardState createState() => _StatusCardState();
 }
 
+
+
 class _StatusCardState extends State<StatusCard> {
   late CachedVideoPlayerPlusController _videoController;
+
+
+  List<dynamic> predictions = [];
+
 
   @override
   void initState() {
@@ -77,51 +89,78 @@ class _StatusCardState extends State<StatusCard> {
     );
   }
 
-  void _showPhotoCarousel(BuildContext context) {
-    // Here we assume you have a list of image paths in the folder
-    final List<String> imagePaths = [
-      '${widget.photoFolder}/image1.jpg',
-      '${widget.photoFolder}/image2.jpg',
-      // Add more images as needed
-    ];
+  Future<void> fetchPrediction() async {
 
+    final apiUrl = 'https://detect.roboflow.com/lettuce-disease-detection-zdd8k/1';
+    final apiKey = 'NDsh01m71LfhdiPoxXcb'; // Replace with your actual API key
+
+    final imageLink = widget.photoFolder;
+
+    final response = await http.post(
+      Uri.parse('$apiUrl?api_key=$apiKey&image=$imageLink'),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    );
+
+
+    if (response.statusCode == 200) {
+      final result = jsonDecode(response.body);
+      setState(() {
+        predictions = result['predictions'];
+        print(predictions);
+      });
+
+    }
+  }
+
+
+  void _showPhotoCarousel(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return Dialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          child: Container(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SizedBox(
-                  height: 300, // Adjust height as needed
-                  child: PageView.builder(
-                    itemCount: imagePaths.length,
-                    itemBuilder: (context, index) {
-                      return Image.network(
-                        widget.photoFolder,
-                        fit: BoxFit.cover,
-                      );
-                    },
-                  ),
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return Dialog(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Display the image
+                    Image.network(
+                      widget.photoFolder,
+                      fit: BoxFit.cover,
+                    ),
+                    const SizedBox(height: 10),
+                    // Show loading or fetched predictions
+                    predictions.isEmpty
+                        ? const Text("Loading...") // Show loading message
+                        : Text(predictions[0]['class']), // Show prediction once loaded
+                    const SizedBox(height: 10),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('Close'),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 10),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('Close'),
-                ),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         );
       },
     );
+
+    // Fetch predictions in the background after the dialog opens
+    fetchPrediction().then((_) {
+      // Once data is fetched, update the dialog with the predictions
+      setState(() {});
+    });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -226,6 +265,7 @@ class _StatusCardState extends State<StatusCard> {
                     child: Image.asset('assets/images/image.png'),
                   ), // Use your photos icon here
                   onPressed: () {
+                    fetchPrediction();
                     _showPhotoCarousel(context);
                   },
                 ),
@@ -237,3 +277,5 @@ class _StatusCardState extends State<StatusCard> {
     );
   }
 }
+
+

@@ -3,6 +3,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrophonic/components/widgets/showGreetingDialog.dart';
+import 'package:hydrophonic/utils/color_palette.dart';
 import 'home_screen.dart';
 
 class IntroScreen extends StatelessWidget {
@@ -57,15 +58,15 @@ Future<User?> _handleSignIn(BuildContext context) async {
           ),
         ],
         onDone: () async {
-          User? user = await _handleSignIn(context);
-          if (user != null) {
-            // Delay navigation to allow time for the dialog to be shown
-            // await Future.delayed(const Duration(seconds: 2));
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (_) => const HomeScreen()),
-            );
-          }
-        },
+            // User? user = await _handleSignIn(context);
+            // if (user != null) {
+              // Delay navigation to allow time for the dialog to be shown
+              // await Future.delayed(const Duration(seconds: 2));
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (_) => const HomeScreen()),
+              );
+            }
+          //},
       ),
     );
   }

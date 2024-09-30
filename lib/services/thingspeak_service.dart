@@ -48,7 +48,7 @@ class ThingSpeakService {
 
   Future<List<Map<String, String>>> fetchHistoricalData(String field) async {
     final response =
-        await http.get(Uri.parse('$baseUrl&average=5minutes&results=20'));
+        await http.get(Uri.parse('$baseUrl&average=15minutes'));
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
