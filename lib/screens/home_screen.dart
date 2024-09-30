@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   return AlertDialog(
                     title: Text('Your Notification ID'),
                     content: SelectableText(
-                      'Put this id in ThingSpeak:\n'+ notifID!,
+                      'Put this notification ID in ThingSpeak:\n'+ notifID!,
                       style: TextStyle(color: Colors.black),
                     ),
                     actions: [
