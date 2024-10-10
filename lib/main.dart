@@ -14,7 +14,7 @@ void main() async {
   );
 
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
-  OneSignal.initialize("<YOUR APP ID HERE>");
+  OneSignal.initialize("0ec315f1-e2be-4975-a0f9-5683531c16ca");
   OneSignal.Notifications.requestPermission(true);
 
   runApp(const MyApp());
