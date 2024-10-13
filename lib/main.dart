@@ -13,10 +13,9 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
-  OneSignal.initialize("0ec315f1-e2be-4975-a0f9-5683531c16ca");
+  OneSignal.Debug.setLogLevel(OSLogLevel.debug);
+  OneSignal.initialize("fa8f3adb-7693-4b6b-bae9-43cb8a8ecfea");
   OneSignal.Notifications.requestPermission(true);
-
   runApp(const MyApp());
 }
 
