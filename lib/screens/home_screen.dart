@@ -47,8 +47,11 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Image.file(File(imagePath)), // Display the captured image
               SizedBox(height: 10),
-              Text(predictions[0]['class']),
-            ],
+              Text(
+                predictions.isNotEmpty && predictions[0]['class'] != null
+                    ? predictions[0]['class']
+                    : 'Can not detect.'
+              ),            ],
           ),
           actions: [
             TextButton(
@@ -124,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
         titleTextStyle: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
         actions: [
           IconButton(
-            icon: Icon(Icons.settings, color: Colors.black), // Change the icon as needed
+            icon: Icon(Icons.notifications, color: Colors.black),
             onPressed: () async {
 
               var id = await OneSignal.User.getOnesignalId();
@@ -134,10 +137,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 context: context,
                 builder: (BuildContext context) {
                   return AlertDialog(
-                    title: Text('Your Notification ID'),
-                    content: SelectableText(
-                      'Put this notification ID in ThingSpeak:\n\n'+id,
-                      style: TextStyle(color: Colors.black, fontSize: 10),
+                    title: Text('Notifications'),
+                    content: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SelectableText(
+                            'Your Notification ID:\n'+id,
+                            style: TextStyle(color: Colors.black, fontSize: 10),
+                          ),
+                          Text("\nNo New Notifications!")
+                        ],
+                      ),
                     ),
                     actions: [
                       TextButton(
