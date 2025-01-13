@@ -193,16 +193,6 @@ class _StatusCardState extends State<StatusCard> {
                 ),
               ),
             ),
-            Center(
-              child: Text(
-                widget.updateTime,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-            ),
             const SizedBox(height: 10),
             GridView.builder(
               shrinkWrap: true,
